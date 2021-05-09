@@ -9,7 +9,7 @@ export default async (req, res) => {
   const worstVersus = $("header:contains(Worst Versus)").parent().find('tbody').children();
   const heroes = [];
   for (const heroSelector of worstVersus) {
-    console.log(heroSelector.children[1])
+    console.log(heroSelector.children[1].children)
   }
   const recommendedPicks = ["morphling"];
   res.status(200).json(recommendedPicks);
