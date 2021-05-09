@@ -55,7 +55,7 @@ export default function Home() {
           <p>Recommended picks:</p>
           {recommendedPicks.map((hero) => {
             return (
-              <p style={styles.yourTeamHeroName}>{hero}</p>
+              <p style={styles.yourTeamHeroName}>{hero.name}</p>
             );
           })}
         </div>
