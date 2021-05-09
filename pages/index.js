@@ -5,6 +5,12 @@ const styles = {
   yourTeamHeroName: {
     color: "blue",
     fontSize: "80%",
+  },
+  mainContainer: {
+    margin: "5%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   }
 }
 
@@ -20,27 +26,40 @@ export default function Home() {
     setYourTeam([...yourTeam, mainInput]);
     setMainInput("");
   }
+
+  const devTools = async () => {
+    console.log(yourTeam);
+    console.log(recommendedPicks);
+  }
+
   return (
     <div>
       <Head>
         <title>DotaBluff</title>
       </Head>
-      <div>
-        <input type="text" value={mainInput} onChange={(event) => setMainInput(event.target.value)}></input>
-        <button onClick={addHero}>Add Hero</button>
-        <button onClick={() => console.log(mainInput)}>DEV TOOLS</button>
-      </div>
-      <div>
-        <p>Your team:</p>
-        {yourTeam.map((hero) => {
-          return (
-            <p style={styles.yourTeamHeroName}>{hero}</p>
-          );
-        })}
-      </div>
-      <div>
-        <p>Recommended picks:</p>
-      </div>
+      <main style={styles.mainContainer}>
+        <div>
+          <input type="text" value={mainInput} onChange={(event) => setMainInput(event.target.value)}></input>
+          <button onClick={addHero}>Add Hero</button>
+          <button onClick={devTools}>DEV TOOLS</button>
+        </div>
+        <div>
+          <p>Your team:</p>
+          {yourTeam.map((hero) => {
+            return (
+              <p style={styles.yourTeamHeroName}>{hero}</p>
+            );
+          })}
+        </div>
+        <div>
+          <p>Recommended picks:</p>
+          {recommendedPicks.map((hero) => {
+            return (
+              <p style={styles.yourTeamHeroName}>{hero}</p>
+            );
+          })}
+        </div>
+      </main>
     </div>
   )
 }
