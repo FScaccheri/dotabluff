@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react'
+import Card from '../components/Card'
 
 const styles = {
   enemyTeamHeroName: {
@@ -15,6 +16,11 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+  },
+  cardsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
   }
 }
 
@@ -48,7 +54,7 @@ export default function Home() {
   const getFormattedRecommendedPicks = () => {
     const picksList = Object.values(recommendedPicks);
     const sortedList = picksList.sort((heroA, heroB) => heroB.priority - heroA.priority)
-    return sortedList.filter(hero => !enemyTeam.includes(hero.name.toLowerCase())).slice(0, 10).map(hero => <p style={styles.recommendedPickHeroName}>{hero.name}</p>);
+    return sortedList.filter(hero => !enemyTeam.includes(hero.name.toLowerCase())).slice(0, 10).map(hero => <Card heroName={hero.name} />);
   }
 
   return (
@@ -63,15 +69,19 @@ export default function Home() {
         </div>
         <div>
           <p>Enemy team:</p>
-          {enemyTeam.map((hero) => {
-            return (
-              <p style={styles.enemyTeamHeroName}>{hero}</p>
-            );
-          })}
+          <div style={styles.cardsContainer}>
+            {enemyTeam.map((hero) => {
+              return (
+                <Card heroName={hero}/>
+              );
+            })}
+          </div>
         </div>
         <div>
           <p>Recommended picks:</p>
-          {getFormattedRecommendedPicks()}
+          <div style={styles.cardsContainer}>
+            {getFormattedRecommendedPicks()}
+          </div>
         </div>
       </main>
     </div>
