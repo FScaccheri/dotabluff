@@ -2,7 +2,8 @@
 import cheerio from "cheerio"
 
 export default async (req, res) => {
-  const response = await fetch("https://www.dotabuff.com/heroes/anti-mage");
+  const requestedHero = req.query.hero.toLowerCase().replace(" ", "-");
+  const response = await fetch(`https://www.dotabuff.com/heroes/${requestedHero}`);
   const html = await response.text();
 
   const $ = cheerio.load(html);
